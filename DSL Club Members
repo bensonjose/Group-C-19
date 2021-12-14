@@ -1,0 +1,183 @@
+# include<stdio.h>
+# include <iostream>
+# include<string>
+using namespace std;
+class list;
+class node
+{
+int prn;
+string name;
+node *next;
+public:
+node(int
+x, string
+nm)
+{
+prn = x;
+next = NULL;
+name = nm;
+}
+friend
+
+class list;
+};
+class list
+{
+node * start;
+public:
+list()
+{
+start = NULL;
+}
+void
+create();
+void
+display();
+void
+insertAtBeginning();
+void
+insertAtEnd();
+void
+insertAfter();
+void
+deleteAtFirst();
+void
+deleteByValue();
+void
+deleteAtEnd();
+int
+computeTotal();
+void
+sortList();
+void
+concatList(list & q1);
+void
+displayRev(node * t);
+bool
+reverseDisplay() // function is only
+for passing start as argument to recursive function
+{
+if (start == NULL)
+return false;
+node * temp = start;
+displayRev(temp);
+// cout << "(President)";
+return true;
+}
+};
+void
+
+list::displayRev(node * t)
+{
+if (t == NULL)
+return;
+else
+{
+displayRev(t->next);
+cout << "\nPRN NO:" << t->prn << " Name: " << t->name;
+}
+}
+void
+list::create()
+{
+int
+no;
+string
+nam;
+if (start == NULL)
+{
+cout << "Enter PRN number: ";
+cin >> no;
+cout << "Enter name: ";
+cin >> nam;
+cout << nam;
+start = new
+node(no, nam);
+cout << "\n=============== List Created ===============";
+}
+else
+{
+cout << "\nList is already created.";
+}
+}
+void
+list::display()
+{
+node * t;
+t = start;
+if (start == NULL)
+cout << "\nList is Empty";
+else
+{cout << "\n=============== List: ===============\n";
+while (t != NULL){
+cout << t->prn << " " << t->name << " \n";
+t=t->next;
+}
+// cout << t->prn << " " << t->name << " \n";
+}
+}
+void
+
+list::insertAtBeginning()
+{
+int
+no;
+string
+nam;
+node * temp;
+if (start == NULL)
+{
+create();
+}
+else
+{
+cout << "\nEnter PRN Number : ";
+cin >> no;
+cout << "Enter Name : ";
+cin >> nam;
+// cout << nam;
+temp = new
+node(no, nam);
+temp->next = start;
+start = temp;;
+cout << "Inserted " << temp->name << " at the
+beginning.";
+}
+}
+void
+list::insertAtEnd()
+{
+int
+no;
+string
+nam;
+node * t;
+if (start == NULL)
+create();
+else
+{
+cout << "\nEnter PRN Number : ";
+cin >> no;
+cout << "Enter Name : ";
+cin >> nam;
+t = start;
+while (t->next != NULL)
+t = t->next;
+node * p = new
+node(no, nam);
+t->next = p;
+}
+}
+
+void
+list::insertAfter()
+{
+int
+prev_no;
+cout << "\nEnter PRN No. after do you want insert : ";
+cin >> prev_no;
+node * t;
+t = start;
+string
+nam;
+int
